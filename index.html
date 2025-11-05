@@ -40,7 +40,6 @@
 
       <div class="actions">
         <button id="startBtn" class="btn">開始填寫問卷</button>
-        <button id="resetBtn" class="btn secondary">重新分配（同一裝置）</button>
         <div style="flex:1"></div>
         <div class="small">您已被分配：<span id="assignedText">尚未分配</span></div>
       </div>
@@ -60,16 +59,8 @@
       'https://forms.gle/Ao94s9i5q8ceMeH59'
     ];
 
-    const FORMS = [
-      'REPLACE_WITH_FORM_URL_1',
-      'REPLACE_WITH_FORM_URL_2',
-      'REPLACE_WITH_FORM_URL_3',
-      'REPLACE_WITH_FORM_URL_4'
-    ];
-
     const STORAGE_KEY = 'research_assigned_form_v1';
     const startBtn = document.getElementById('startBtn');
-    const resetBtn = document.getElementById('resetBtn');
     const assignedText = document.getElementById('assignedText');
 
     function getAssigned(){
@@ -104,13 +95,6 @@
       // 開新分頁導向表單
       window.open(assigned, '_blank', 'noopener');
       updateAssignedLabel();
-    });
-
-    resetBtn.addEventListener('click', ()=>{
-      // 允許使用者在同一裝置重新分配（例如研究者為了測試）
-      try{ localStorage.removeItem(STORAGE_KEY); }catch(e){}
-      updateAssignedLabel();
-      alert('已清除本裝置分配；下次按「開始填寫問卷」會重新隨機分配。');
     });
 
     // 頁面載入時顯示目前分配
